@@ -7,7 +7,7 @@ export default function NotFound() {
       <meta name="title" content="Not Found" />
       <title>Not Found | 404</title>
     </Head>
-    <div className="display-1 text-danger"><b>404</b></div>
+    <div className="display-1 text-danger text-center"><b>404</b></div>
     <div className="row mt-5 mb-5">
         <div className="col-lg ml-lg-5 text-center">
           <h2></h2>

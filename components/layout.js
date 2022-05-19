@@ -1,4 +1,4 @@
-import Navbar from './navbar'
+import Footer from './footer'
 import { Container } from 'react-bootstrap'
 import Head from 'next/head'
 
@@ -11,16 +11,16 @@ export default function Layout({ children }) {
 
       <meta name="author" content={process.env.NEXT_PUBLIC_META_AUTHOR} />
       
-      <meta name="description" content="Software solutions for everyone." />
-      <meta name="keywords" content="florgon, space, portal, users, profile, kirillzhosul" />
+      <meta name="description" content="Florgon users public profiles." />
+      <meta name="keywords" content="florgon, users, profile" />
       
       <link rel="canonical" href={process.env.NEXT_PUBLIC_CANONICAL_DOMAIN} />
       <link rel="alternate" hrefLang="x-default" href={process.env.NEXT_PUBLIC_CANONICAL_DOMAIN} />
 
-      <meta name="title" content="Florgon users" />
-      <title>User public profile</title>
+      <meta name="title" content="Florgon Users" />
+      <title>Florgon Users</title>
     </Head>
-    <Navbar />
-    <Container className="mt-5 text-center">{children}</Container>
+    <Container className="mt-5">{children}</Container>
+    <Footer/>
   </>)
 }
