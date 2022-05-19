@@ -1,31 +1,10 @@
-import { authMethodUserProfileGetInfo, authApiErrorCode } from '@kirillzhosul/florgon-auth-api'
+import fetchUserProfile from '../shared/fetchUserProfile'
 import UserProfile from '../components/userProfile'
 
 export async function getServerSideProps({query}){
-    let userProfile = null;
-    try{
-        userProfile = await authMethodUserProfileGetInfo(undefined, query.username);
-    }catch(error){
-        if (error && "error" in error){
-            if (error["error"]["code"] === authApiErrorCode.USER_DEACTIVATED){
-                return {
-                    props: {
-                        error: authApiErrorCode.USER_DEACTIVATED
-                    }
-                }
-            }
-        }
-        return {
-            notFound: true
-        }
-    }
-    return {
-        props: {
-            user: userProfile["success"]["user"]
-        }
-    }
+    return await fetchUserProfile({username: query.username})
 }
 
-export default function ProfileByUserUsername(props) {
+export default function ProfileByUserId(props) {
     return <UserProfile {...props}/>;
 }
