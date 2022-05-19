@@ -19,17 +19,44 @@ function _UserProfile({user}){
                 {(user.first_name || user.last_name) && <small className="display-6">({user.first_name} {user.last_name})</small>}
             </div>
             <p>
-                <b>Florgon</b> member from <i>{createdAt.toDateString()}</i> (<b>{existsForDays}</b> days).<br/>
+                <b>Florgon</b> member since <i>{createdAt.toDateString()}</i> (<b>{existsForDays}</b> days).<br/>
+                {user.profile.website && <>
+                    Website: <a href={user.profile.website} className="link-secondary">{user.profile.website}</a>
+                </>}
             </p>
         </div>
         <hr/>
-        <div className="row mb-5 mt-5">
+        <div className="row mt-5">
             <div className="col-lg ml-lg-5">
 
                 <h2>About me</h2>
                 <div className="mx-4">
-                    <h4 className="text-secondary">User has not written anything about himself...</h4>
+                    <h4 className="text-secondary">
+                        {user.profile.bio && user.profile.bio}
+                        {!user.profile.bio && "User has not written anything about himself..."}
+                    </h4>
                 </div>
+            </div>
+        </div>
+        <div className="row mb-5">
+            <div className="col-lg ml-lg-5">
+
+            {(user.profile.socials.vk || user.profile.socials.tg || user.profile.socials.gh) && <>
+                    <h2>My accounts</h2>
+                    <div className="mx-4">
+                        <h4 className="text-secondary">
+                            {user.profile.socials.vk && <div>
+                                VK: <a href={`https://vk.com/${user.profile.socials.vk}`}>@{user.profile.socials.vk}</a>
+                            </div>}
+                            {user.profile.socials.tg && <div>
+                                Telegram: <a href={`https://t.me/${user.profile.socials.tg}`}>@{user.profile.socials.tg}</a>
+                            </div>}
+                            {user.profile.socials.gh && <div>
+                                GitHub: <a href={`https://github.com/${user.profile.socials.gh}`}>@{user.profile.socials.gh}</a>
+                            </div>}
+                        </h4>
+                    </div>
+                </>}
             </div>
         </div>
         <div className="row mb-5">
@@ -62,6 +89,7 @@ function _FailedToLoad({pageTitle, description}){
         </div>
     </>)
 }
+
 export default function UserProfile({ user, error }) {
     if (error === authApiErrorCode.USER_DEACTIVATED){
         return <_FailedToLoad 
