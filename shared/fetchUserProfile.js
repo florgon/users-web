@@ -17,10 +17,12 @@ export default async function fetchUserProfile({user_id, username}){
             
             if (errorCode === authApiErrorCode.USER_DEACTIVATED || 
                 errorCode === authApiErrorCode.USER_PROFILE_PRIVATE ||
-                errorCode === authApiErrorCode.USER_PROFILE_AUTH_REQUIRED){
+                errorCode === authApiErrorCode.USER_PROFILE_AUTH_REQUIRED ||
+                errorCode === 42 ||
+                errorCode === 44){
                 return {
                     props: {
-                        error: error["error"]["code"]
+                        error: errorCode
                     }
                 }
             }

@@ -105,6 +105,20 @@ export default function UserProfile({ user, error }) {
         />
     }
 
+    if (error === 44){
+        return <_FailedToLoad 
+            pageTitle={"Too many requests!"} 
+            description={"Please slow down in making requests!"}
+        />
+    }
+
+    if (error === 42){
+        return <_FailedToLoad 
+            pageTitle={"Internal server error!"} 
+            description={"Sorry, server unable to process your request!"}
+        />
+    }
+
     if (error === authApiErrorCode.USER_PROFILE_AUTH_REQUIRED){
         return <_FailedToLoad 
             pageTitle={"Private profile!"} 
